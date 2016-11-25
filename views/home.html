@@ -1,19 +1,18 @@
+{% extends 'layout.html' %} 
+
 {% block body %}
+
 <div id="map"></div>
 <script>
   function initMap() {
-    var uluru = {lat: -25.363, lng: 131.044};
+    var brisbane = {lat: -27.470125, lng: 153.021072};
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
-      center: uluru
-    });
-    var marker = new google.maps.Marker({
-      position: uluru,
-      map: map
+      center: brisbane
     });
   }
 </script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAal-cpSalD8hIyKNmJUBB_zD5z6XMOzgE&callback=initMap">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAal-cpSalD8hIyKNmJUBB_zD5z6XMOzgE&callback=initMap">
+</script> 
+
 {% endblock %}
