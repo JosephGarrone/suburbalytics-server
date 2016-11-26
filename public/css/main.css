@@ -229,14 +229,15 @@ footer {
 
 .options {
   position: absolute;
-  height: 192px;
+  height: 224px;
   width: 100%;
+  padding: 20px;
 }
 
 #results {
   position: absolute;
-  top: 192px;
-  height: calc(100% - 192px);
+  top: 224px;
+  height: calc(100% - 224px);
   width: 100%;
   overflow-y: scroll;
 }
@@ -244,4 +245,16 @@ footer {
 .result {
   height: 300px;
   width: 100%;
+}
+
+.slider {
+  width: 100%;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.mdl-cell {
+  margin: 0px !important;
 }

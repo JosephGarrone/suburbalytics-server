@@ -2,7 +2,7 @@
  * GET /
  */
 exports.index = function(req, res) {
-  var places = ["Brisbane", "Sydney", "Hamilton", "Northgate", "The Gabba", "West End", "Corinda"];
+  var places = ["Brisbane", "Hamilton", "Northgate", "The Gabba", "West End", "not Melbourne", "definitely not Sydney"];
 
   var max = 0;
 
