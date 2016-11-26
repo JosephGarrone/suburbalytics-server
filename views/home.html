@@ -2,17 +2,96 @@
 
 {% block body %}
 
-<div id="map"></div>
-<script>
-  function initMap() {
-    var brisbane = {lat: -27.470125, lng: 153.021072};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: brisbane
-    });
-  }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAal-cpSalD8hIyKNmJUBB_zD5z6XMOzgE&callback=initMap">
-</script> 
+<!--<div id="map"></div>-->
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAal-cpSalD8hIyKNmJUBB_zD5z6XMOzgE&callback=initMap">
+</script>-->
+<div class="overlay">
+  <img class="background" src="img/background.jpg"/>
+</div>
+<div class="first docs-layout-content mdl-layout__content mdl-color-text--black-600 mess-my-shit-up">
+  <div class="center-align margin-top-10-percent">
+    <h1 class="typo-styles__demo mdl-typography--display-4 light">I want to know about
+      <span id="flipperOfShit" class="rotate">{{ places }}</span>
+    </h1>
+  </div>
+  <div class="center-align margin-top-40">
+    <div class="mdl-textfield mdl-js-textfield center-align scale-2">
+      <input class="mdl-textfield__input" type="text" id="sample1">
+      <label class="mdl-textfield__label shitty-text-color" for="sample1">A city</label>
+    </div>
+    <div class="margin-left-20 margin-right-20">
+      <h4 class="typo-styles__demo mdl-typography--display-1">OR</h1>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield center-align scale-2">
+      <input class="mdl-textfield__input" type="text" id="sample2">
+      <label class="mdl-textfield__label shitty-text-color" for="sample2">A suburb</label>
+    </div>
+  </div>
+  <div class="center-align margin-top-80">
+    <button id="go" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent scale-2">
+      Suburbalyze!!!
+    </button>
+  </div>
+</div>
+
+<div class="second" style="display: none">
+  <div class="mdl-layout mdl-js-layout mdl-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <div class="mdl-textfield mdl-js-textfield center-align scale-2 margin-0-auto center-align white">
+          <input class="mdl-textfield__input center-align-force" type="text" id="search">
+          <label class="mdl-textfield__label other-shitty-text-color center-align-force" style="visibility: hidden" for="search">A city or suburb</label>
+        </div>
+      </div>
+    </header>
+
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div class="data">
+          <div class="options">
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+              <div class="mdl-cell mdl-cell--1-col">1</div>
+            </div>
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--4-col">4</div>
+              <div class="mdl-cell mdl-cell--4-col">4</div>
+              <div class="mdl-cell mdl-cell--4-col">4</div>
+            </div>
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--6-col">6</div>
+              <div class="mdl-cell mdl-cell--4-col">4</div>
+              <div class="mdl-cell mdl-cell--2-col">2</div>
+            </div>
+          </div>
+          <div id="results">
+            <div class="result" style="background: red;">
+            </div>
+            <div class="result" style="background: green;">
+            </div>
+            <div class="result" style="background: blue;">
+            </div>
+          </div>
+        </div>
+        <div class="map">
+          <div id="map"></div>
+
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAal-cpSalD8hIyKNmJUBB_zD5z6XMOzgE&callback=initMap"></script>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
 
 {% endblock %}
