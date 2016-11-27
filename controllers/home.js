@@ -1,3 +1,5 @@
+var data = require('../public/data/data.js');
+
 /**
  * GET /
  */
@@ -12,9 +14,6 @@ exports.index = function(req, res) {
   }
   for (var i = 0; i < places.length; i++) {
     var place = places[i];
-    /*while (place.length < max) {
-      place += "&nbsp;";
-    }*/
     places[i] = place;
   }
 
@@ -22,4 +21,15 @@ exports.index = function(req, res) {
     title: 'Home',
     places: places.join(',')
   });
+};
+
+exports.dataGet = function(req, res) {
+  var suburb = req.params.suburb;
+  var result = data[suburb];
+
+  if (result == null) {
+    res.send({"err": "NotFound"});
+  } else {
+    res.send(JSON.stringify(result));
+  }
 };

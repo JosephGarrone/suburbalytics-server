@@ -11,7 +11,7 @@
 // public_transport- The rating given to public transport options in the area
 // distance_to_cbd- The distance to the center of brisbane (1 is far, 10 is near)
 
-var suburbs = {
+exports = module.exports = {
     bracken_ridge: {
         median_housing_cost: 4,
         traffic: 8,

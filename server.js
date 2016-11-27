@@ -31,6 +31,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', HomeController.index);
+app.get('/data/:suburb', HomeController.dataGet);
 
 // Production error handler
 if (app.get('env') === 'production') {
