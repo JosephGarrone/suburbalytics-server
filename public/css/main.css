@@ -245,8 +245,9 @@ footer {
 }
 
 #results > div > div {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 #notFound {

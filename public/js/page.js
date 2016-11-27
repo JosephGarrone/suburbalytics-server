@@ -121,6 +121,7 @@ function loadGraphs() {
     try {
         loadTraffic();
         loadPastTraffic();
+        loadCrimeData();
     } catch (e) {
         console.log("Shits absolutely rekt", e);
     }
@@ -224,6 +225,50 @@ function loadPastTraffic() {
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('past_traffic'));
+
+    chart.draw(data, options);
+}
+
+function loadCrimeData() {
+    if (!allData.crime) {
+        return;
+    }
+
+    var raw = [];
+    raw.push(['Year', 'Crimes'])
+    var temp = [];
+    for (var i = 2001; i < 2012; i++) {
+        temp[i-2001] = 0
+    }
+    for (var i = 0; i < allData.crime.length; i++) {
+        var crime = allData.crime[i];
+        var year = crime[0];
+        if (crime[0].toString().length == 3) {
+            year = (crime[0].toString().substring(2))-1;
+        } else if (crime[0].toString().length == 4) {
+            year = (crime[0].toString().substring(2))-1;
+        }
+        console.log(crime[0], "->", year);
+        temp[year] += crime[0] * 10 + crime[1];
+    }
+
+    for (var i = 0; i < temp.length; i++) {
+        raw.push([i + 2001, temp[i] / 1000]);
+    }
+
+    var data = google.visualization.arrayToDataTable(raw);
+
+    var options = {
+        title: 'Crime Rates for ' + $("#search").val(),
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        colors: ["#ff5722"],
+        chartArea: {'width': '90%', 'height': '80%'},
+        pointSize: 8,
+        hAxis: {format: ''}
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('crime_chart'));
 
     chart.draw(data, options);
 }
