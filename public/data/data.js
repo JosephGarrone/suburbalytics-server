@@ -136,6 +136,19 @@ exports = module.exports = {
         traffic: 8,
         poi: 9,
         construction: 4,
+        construction_points: [
+        {
+        	name: "highrise",
+        	location: [-27.437411, 153.054692]
+        },
+        {
+        	name: "demolition",
+        	location: [-27.439315, 153.071858]
+        },
+        {
+        	name: "pipleline installation",
+        	location: [-27.439116, 153.060953]
+        }], 
         noise: 6,
         public_transport: 9,
         distance_to_cbd: 10,
@@ -148,7 +161,8 @@ exports = module.exports = {
         construction: 6,
         noise: 7,
         public_transport: 8,
-        distance_to_cbd: 5
+        distance_to_cbd: 5,
+        center: [-27.518223, 153.067280]
     },
     jamboree: {
         median_housing_cost: 4,
