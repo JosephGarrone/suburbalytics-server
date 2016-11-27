@@ -138,7 +138,8 @@ exports = module.exports = {
         construction: 4,
         noise: 6,
         public_transport: 9,
-        distance_to_cbd: 10
+        distance_to_cbd: 10,
+        center: [-27.437449, 153.059627]
     },
     holland_park: {
         median_housing_cost: 4,
