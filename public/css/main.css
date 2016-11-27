@@ -218,6 +218,8 @@ footer {
   height: 100%;
   width: 66%;
   background: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .map {
@@ -238,7 +240,21 @@ footer {
   position: absolute;
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  font-size: 32px;
+  padding: 10px;
+}
+
+#results > div > div {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+#notFound {
+  background: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: none;
 }
 
 .result {
