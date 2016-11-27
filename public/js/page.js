@@ -9,7 +9,8 @@ var textData = [
 ];
 var scale = ["Very poor", "Poor", "Average", "Good", "Very good"];
 var colors = ["red", "orange", "black", "green", "darkgreen"];
-var data = null;
+var allData = null;
+var suburb;
 
 function runJS() {
     $('#go').click(() => {
@@ -39,20 +40,146 @@ function runJS() {
     });
 }
 
-function loadInfo(suburb) {
+function loadInfo(suburb2) {
+    suburb = suburb2;
     $.getJSON('/data/' + suburb, {}, function(data) {
-        console.log(data);
+        allData = data;
         if (data.err) {
             $("#notFound").fadeIn();
         } else {
+            loadGraphs();
             $("#notFound").fadeOut();
             for (var i = 0; i < textData.length; i++) {
                 var item = textData[i];
                 var id = item[1];
-                var idx = Math.floor(data[item[0]]/2);
+                var idx = Math.floor((data[item[0]]-1)/2);
                 $(id).text(scale[idx]);
                 $(id).css({'color': colors[idx]})
             }
         }
     });
 }
+
+function loadGraphs() {
+    var raw = [];
+    raw.push(['Year', 'Population'])
+    for (var i = 2006; i < 2026; i++) {
+        raw.push([i, allData.population[i - 2006]]);
+    }
+    var data = google.visualization.arrayToDataTable(raw);
+
+    var options = {
+        title: 'Population Growth for ' + $("#search").val(),
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        colors: ["#ff5722"],
+        chartArea: {'width': '90%', 'height': '80%'},
+        pointSize: 8,
+        hAxis: {format: ''}
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('population_chart'));
+
+    chart.draw(data, options);
+
+    loadTraffic();
+    loadPastTraffic();
+}
+
+function fixString(string) {
+    string = string.replace(/([a-z])([A-Z])/g, '$1 $2');
+    string = string.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+    return string;
+}
+
+function loadTraffic() {
+    var raw = [];
+    var something = ['Travel Time'];
+    var length = 0;
+    var count = 0;
+    var max = 4;
+    for (var road in allData.future_traffic) {
+        if (count++ == max) {
+            break;
+        }
+        if (allData.future_traffic.hasOwnProperty(road)) {
+            something.push(fixString(road.replace('_', '')));
+            length = road.length;
+        }
+    }
+    raw.push(something)
+    for (var i = 2016; i < 2016 + length; i++) {
+        data = [i];
+        count = 0;
+        for (var road in allData.future_traffic) {
+            if (count++ == max) {
+                break;
+            }
+            if (allData.future_traffic.hasOwnProperty(road)) {
+                data.push(allData.future_traffic[road][i - 2016]);
+            }
+        }
+        raw.push(data);
+    }
+    var data = google.visualization.arrayToDataTable(raw);
+
+    var options = {
+        title: 'Future Travel Times for ' + $("#search").val(),
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        chartArea: {'width': '90%', 'height': '80%'},
+        pointSize: 8,
+        hAxis: {format: ''}
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('future_traffic'));
+
+    chart.draw(data, options);
+}
+
+function loadPastTraffic() {
+    var raw = [];
+    var something = ['Travel Time'];
+    var length = 0;
+    var count = 0;
+    var max = 4;
+    for (var road in allData.past_traffic) {
+        if (count++ == max) {
+            break;
+        }
+        if (allData.past_traffic.hasOwnProperty(road)) {
+            something.push(fixString(road.replace('_', '')));
+            length = road.length;
+        }
+    }
+    raw.push(something)
+    for (var i = 2016 - length; i < 2016; i++) {
+        data = [i];
+        count = 0;
+        for (var road in allData.future_traffic) {
+            if (count++ == max) {
+                break;
+            }
+            if (allData.past_traffic.hasOwnProperty(road)) {
+                data.push(allData.past_traffic[road][i - (2016 - length)]);
+            }
+        }
+        raw.push(data);
+    }
+    var data = google.visualization.arrayToDataTable(raw);
+
+    var options = {
+        title: 'Past Travel Times for ' + $("#search").val(),
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        chartArea: {'width': '90%', 'height': '80%'},
+        pointSize: 8,
+        hAxis: {format: ''}
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('past_traffic'));
+
+    chart.draw(data, options);
+}
+
+google.charts.load('current', {'packages':['corechart']});
