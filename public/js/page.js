@@ -11,6 +11,7 @@ var scale = ["Very poor", "Poor", "Average", "Good", "Very good"];
 var colors = ["red", "orange", "black", "green", "darkgreen"];
 var allData = null;
 var suburb;
+var markers = [];
 
 function runJS() {
     $('#go').click(() => {
@@ -56,11 +57,45 @@ function loadInfo(suburb2) {
                 $(id).text(scale[idx]);
                 $(id).css({'color': colors[idx]})
             }
+
+            if (allData.center) {
+                map.setCenter(new google.maps.LatLng(allData.center[0], allData.center[1]), 16);
+            }
+
+            hideMarkers();
+            if (allData.construction_points) {
+                for (var i = 0; i < allData.construction_points.length; i++) {
+                    var point = allData.construction_points[i];
+                    console.log(i, point);
+                    var myLatLng = {lat: point.location[0], lng: point.location[1]};
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: toTitleCase(point.name)
+                    });
+                    marker.setMap(map);
+                    markers.push(marker);
+                }
+            }
         }
     });
 }
 
+function hideMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+}
+
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 function loadGraphs() {
+    if (!allData.population) {
+        return;
+    }
     var raw = [];
     raw.push(['Year', 'Population'])
     for (var i = 2006; i < 2026; i++) {
@@ -97,6 +132,9 @@ function fixString(string) {
 }
 
 function loadTraffic() {
+    if (!allData.future_traffic) {
+        return;
+    }
     var raw = [];
     var something = ['Travel Time'];
     var length = 0;
@@ -142,6 +180,9 @@ function loadTraffic() {
 }
 
 function loadPastTraffic() {
+    if (!allData.past_traffic) {
+        return;
+    }
     var raw = [];
     var something = ['Travel Time'];
     var length = 0;
