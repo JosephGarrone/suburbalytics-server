@@ -60,6 +60,7 @@ function loadInfo(suburb2) {
 
             if (allData.center) {
                 map.setCenter(new google.maps.LatLng(allData.center[0], allData.center[1]), 16);
+                map.setZoom(14);
             }
 
             hideMarkers();
