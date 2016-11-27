@@ -231,13 +231,12 @@ footer {
   position: absolute;
   height: 224px;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
 }
 
 #results {
   position: absolute;
-  top: 224px;
-  height: calc(100% - 224px);
+  height: 100%;
   width: 100%;
   overflow-y: scroll;
 }
@@ -257,4 +256,14 @@ footer {
 
 .mdl-cell {
   margin: 0px !important;
+}
+
+.span-thingo {
+  position: absolute;
+  margin-top: -0.2rem;
+}
+
+.bottom-padding-only {
+  padding: 0px !important;
+  padding-bottom: 10px !important;
 }

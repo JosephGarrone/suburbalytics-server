@@ -1,15 +1,17 @@
-var sliders = ["public", "traffic", "poi", "crime", "housing"];
+var textData = ["#housing", "#traffic", "#poi", "#construction", "#noise", "#transport", "distance"];
+var scale = ["Very poor", "Poor", "Average", "Good", "Very good"]
 
 function runJS() {
     $('#go').click(() => {
         $('.first').fadeOut({duration: 'fast', done: function() {
             $('.second').fadeIn({duration: 'fast', done: function() {
                 loadMap();
+
                 $('#search').val($('#sample1').val() + $('#sample2').val());
                 $('#sample1').val('');
                 $('#sample1').val('');
 
-                loadSliders();
+                loadInfo();
             }});
         }});
     });
@@ -20,11 +22,12 @@ function runJS() {
     });
 }
 
-function loadSliders() {
-    for (var i = 0; i < sliders.length; i++) {
-        $('#' + sliders[i]).on("change", (value, event) => {
-            console.log(value, event);
-            $('#' + sliders[i] + "_value").val($('#' + sliders[i]).val());
-        });
+function loadInfo() {
+    for (var i = 0; i < textData.length; i++) {
+        (function(index) {
+            $(sliders[index]).on("change", (value, event) => {
+                $(sliders[index] + "_value").text($(sliders[index]).val());
+            });
+        })(i);
     }
 }

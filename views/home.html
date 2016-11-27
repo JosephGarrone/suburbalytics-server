@@ -49,69 +49,34 @@
     <main class="mdl-layout__content">
       <div class="page-content">
         <div class="data">
-          <div class="options">
-            <div class="mdl-grid no-padding">
-              <div class="mdl-cell mdl-cell--2-col">Public Transport</div>
-              <div class="mdl-cell mdl-cell--2-col">
-                <p class="slider">
-                  <span id="public_value">5</span>
-                  <input class="mdl-slider mdl-js-slider" type="range" id="public" min="0" max="10" value="5" step="1">
-                </p>
-              </div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-            </div>
-            <div class="mdl-grid no-padding">
-              <div class="mdl-cell mdl-cell--2-col">Traffic</div>
-              <div class="mdl-cell mdl-cell--2-col">
-                <p class="slider">
-                  <span id="public_value">5</span>
-                  <input class="mdl-slider mdl-js-slider" type="range" id="traffic" min="0" max="10" value="5" step="1">
-                </p>
-              </div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-            </div>
-            <div class="mdl-grid no-padding">
-              <div class="mdl-cell mdl-cell--2-col">Points of Interest</div>
-              <div class="mdl-cell mdl-cell--2-col">
-                <p class="slider">
-                  <span id="public_value">5</span>
-                  <input class="mdl-slider mdl-js-slider" type="range" id="poi" min="0" max="10" value="5" step="1">
-                </p>
-              </div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-            </div>
-            <div class="mdl-grid no-padding">
-              <div class="mdl-cell mdl-cell--2-col">Crime</div>
-              <div class="mdl-cell mdl-cell--2-col">
-                <p class="slider">
-                  <span id="public_value">5</span>
-                  <input class="mdl-slider mdl-js-slider" type="range" id="crime" min="0" max="10" value="5" step="1">
-                </p>
-              </div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-            </div>
-            <div class="mdl-grid no-padding">
-              <div class="mdl-cell mdl-cell--2-col">Housing Prices</div>
-              <div class="mdl-cell mdl-cell--2-col">
-                <p class="slider">
-                  <span id="public_value">5</span>
-                  <input class="mdl-slider mdl-js-slider" type="range" id="housing" min="0" max="10" value="5" step="1">
-                </p>
-              </div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-              <div class="mdl-cell mdl-cell--4-col">1</div>
-            </div>
-          </div>
           <div id="results">
-            <div class="result" style="background: red;">
+            <div class="mdl-grid no-padding">
+              <div class="mdl-cell mdl-cell--12-col" style="height: 300px">Crime rate graph</div>
             </div>
-            <div class="result" style="background: green;">
+            <div class="mdl-grid no-padding">
+              <div class="mdl-cell mdl-cell--12-col" style="height: 300px">Traffic graph</div>
             </div>
-            <div class="result" style="background: blue;">
+            <div class="mdl-grid no-padding">
+              <div class="mdl-cell mdl-cell--3-col">Housing Costs:</div>
+              <div class="mdl-cell mdl-cell--3-col" id="housing"></div>
+              <div class="mdl-cell mdl-cell--3-col">Traffic:</div>
+              <div class="mdl-cell mdl-cell--3-col" id="traffic"></div>
+            </div>
+            <div class="mdl-grid no-padding">
+              <div class="mdl-cell mdl-cell--3-col">Points of Interests:</div>
+              <div class="mdl-cell mdl-cell--3-col" id="poi"></div>
+              <div class="mdl-cell mdl-cell--3-col">Constructions:</div>
+              <div class="mdl-cell mdl-cell--3-col" id="constructions"></div>
+            </div>
+            <div class="mdl-grid no-padding">
+              <div class="mdl-cell mdl-cell--3-col">Noise Levels:</div>
+              <div class="mdl-cell mdl-cell--3-col" id="noise"></div>
+              <div class="mdl-cell mdl-cell--3-col">Public Transport:</div>
+              <div class="mdl-cell mdl-cell--3-col" id="transport"></div>
+            </div>
+            <div class="mdl-grid no-padding">
+              <div class="mdl-cell mdl-cell--3-col">Distance to CBD:</div>
+              <div class="mdl-cell mdl-cell--3-col" id="distance"></div>
             </div>
           </div>
         </div>
