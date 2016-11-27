@@ -82,8 +82,12 @@ function loadGraphs() {
 
     chart.draw(data, options);
 
-    loadTraffic();
-    loadPastTraffic();
+    try {
+        loadTraffic();
+        loadPastTraffic();
+    } catch (e) {
+        console.log("Shits absolutely rekt", e);
+    }
 }
 
 function fixString(string) {
